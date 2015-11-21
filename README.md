@@ -20,7 +20,7 @@ This is a litte Q Station demo program written in C. It connects your Q Station 
 
 ##Screenshots
 
-![Screenshot of the running program](https://imgur.com/TF28BXN)
+![Screenshot of the running program](http://i.imgur.com/TF28BXN.jpg)
 
 ##Credits
 
