@@ -18,6 +18,8 @@ This is a litte Q Station demo program written in C. It connects your Q Station 
 
 4. Run the program and have fun
 
+	> ./main
+
 ##Screenshots
 
 ![Screenshot of the running program](http://i.imgur.com/TF28BXN.jpg)
