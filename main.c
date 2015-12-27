@@ -4,16 +4,24 @@
 #include "http.h"
 #include "udp.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
+	if(argc < 2)
+	{
+		printf("Usage ./main MD1AC44200003128\n");
+		return EXIT_FAILURE;
+	}
+
 	int 	prev_value = 100;
 	int 	recent_value = 1;
 	FILE*	stream;
-	char	request[1024], buf[1024];
+	char	request[1024], buf[1024], json[1024];
 
 	stream = fopen("config.ini", "r");
-	fread(buf, sizeof(char), sizeof(buf), stream); 
+	fread(buf, sizeof(char), sizeof(buf), stream);
 	fclose(stream);
+
+	printf("Bulb: %s\n", argv[1]);
 
 	while(1)
 	{
@@ -24,15 +32,17 @@ int main(void)
 		{
 			if(recent_value == 2)
 			{
-				printf("Turn bulbs off.\n");
-				udp_send("{\"iswitch\":\"0\",\"r\":\"255\",\"g\":\"255\",\"b\":\"255\",\"bright\":\"20\",\"cmd\":\"light_ctrl\",\"effect\":\"9\",\"sn_list\":[{\"sn\":\"TEST123\"}]}");
+				printf("Turn bulb off.\n");
+				sprintf(json, "{\"iswitch\":\"0\",\"r\":\"255\",\"g\":\"255\",\"b\":\"255\",\"bright\":\"20\",\"cmd\":\"light_ctrl\",\"effect\":\"9\",\"sn_list\":[{\"sn\":\"%s\"}]}", argv[1]);
+				udp_send(json);
 			}
 			else if(recent_value == 3)
 			{
-				printf("Turn bulbs on.\n");
-				udp_send("{\"iswitch\":\"1\",\"r\":\"255\",\"g\":\"255\",\"b\":\"255\",\"bright\":\"20\",\"cmd\":\"light_ctrl\",\"effect\":\"9\",\"sn_list\":[{\"sn\":\"TEST123\"}]}");
+				printf("Turn bulb on.\n");
+				sprintf(json, "{\"iswitch\":\"1\",\"r\":\"255\",\"g\":\"255\",\"b\":\"255\",\"bright\":\"20\",\"cmd\":\"light_ctrl\",\"effect\":\"9\",\"sn_list\":[{\"sn\":\"%s\"}]}", argv[1]);
+				udp_send(json);
 			}
-			else printf("Unknown value.\n");
+			else printf("ERROR: Unknown value.\n");
 		}
 
 		prev_value = recent_value;
