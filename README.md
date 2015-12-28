@@ -7,7 +7,7 @@ This is a litte Q Station demo program written in C. It connects your Q Station 
 1. Install build depencies
 
 	```
-	Follow there instructions: https://wiki.openwrt.org/doc/howto/buildroot.exigence
+	Follow these instructions: https://wiki.openwrt.org/doc/howto/buildroot.exigence
 	```
 
 2. Clone OpenWRT from github (Do the following things as non root user!)
@@ -44,7 +44,7 @@ This is a litte Q Station demo program written in C. It connects your Q Station 
 	Check:  Build the OpenWRT Toolchain
 	```
 
-6. Build the toolchain
+6. Build the toolchain (this will take up to three hours!)
 
 	```bash
 	make V=99
@@ -81,7 +81,9 @@ This is a litte Q Station demo program written in C. It connects your Q Station 
 	mkdir /QStation_Demo
 	wget ... or scp ...
 	vim config.ini
+	press i for insert mode
 	paste your AIO API Key (No spaces)
+	exit vim (press escape :wq)
 	```
 
 12. Run the program and have fun
