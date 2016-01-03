@@ -1,13 +1,15 @@
 #Q Station C Demo
 
-This is a litte Q Station demo program written in C. It connects your Q Station with your Adafruit.io interface. You can turn your bulb on / off (for now).
+This is a litte Belleds Q Station demo program written in C. It connects your Belleds Q Station with your Adafruit.io interface. You can turn one of your bulbs on / off (for now).
 
 ##Instructions
 
-1. Install build depencies
+### Build System
 
-	```
-	Follow these instructions: https://wiki.openwrt.org/doc/howto/buildroot.exigence
+1. Install build depencies (See https://wiki.openwrt.org/doc/howto/buildroot.exigence for more information)
+
+	```bash
+	apt-get install git-core build-essential libssl-dev libncurses5-dev unzip subversion mercurial gawk
 	```
 
 2. Clone OpenWRT from github (Do the following things as non root user!)
@@ -29,7 +31,7 @@ This is a litte Q Station demo program written in C. It connects your Q Station 
 	./scripts/feeds install -a
 	```
 
-4. Check prerequisites and prepare toolchain buidling
+4. Check prerequisites and prepare toolchain buidling (prereq will show you missing depencies)
 
 	```bash
 	make defconfig
@@ -40,8 +42,8 @@ This is a litte Q Station demo program written in C. It connects your Q Station 
 5. Now check the system and build toolchain options in menuconfig
 
 	```
-	Select: Atheros AR7xx/AR9xx
-	Check:  Build the OpenWRT Toolchain
+	Target System: Atheros (AR7xx/AR9xx)
+	[*] Build the OpenWRT based Toolchain
 	```
 
 6. Build the toolchain (this will take up to three hours!)
@@ -74,19 +76,34 @@ This is a litte Q Station demo program written in C. It connects your Q Station 
 	make main
 	```
 
-11. Copy the program to your QStation and create the config.ini with your Adafruit.io API key. For example download it from your webserver.
+11. Check file information of the compilied main program
+
+	```bash
+	file main
+	```
+	
+13. The output should look something like this:
+
+	```bash
+	main: ELF 32-bit MSB executable, MIPS, MIPS32 rel2 version 1...
+	```
+
+### Belleds Q Station
+
+1. Copy the program to your QStation and create the config.ini with your Adafruit.io API key. For example download it from your webserver. We use the tmp dir for testing only!
 
 	```bash
 	cd /tmp
-	mkdir /QStation_Demo
-	wget ... or scp ...
+	mkdir QStation_Demo
+	cd QStation_Demo
+	scp user@ip:/home/user/QStation_Demo/* .
 	vim config.ini
-	press i for insert mode
-	paste your AIO API Key (No spaces)
-	exit vim (press escape :wq)
+	# press i for insert mode
+	# paste your AIO API Key (No spaces)
+	# press escape and :wq to exit vim
 	```
 
-12. Run the program and have fun
+2. Run the program and have fun
 
 	```bash
 	./main MD1AC44200003128
