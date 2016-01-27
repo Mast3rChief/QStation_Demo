@@ -1,6 +1,6 @@
 #Q Station C Demo
 
-This is a litte Belleds Q Station demo program written in C. It connects your Belleds Q Station with your Adafruit.io interface. You can turn one of your bulbs on / off (for now).
+This is a litte Belleds Q Station demo program written in C. It connects your Belleds Q Station with your [Adafruit.io](https://io.adafruit.com/) interface. You can turn one of your bulbs on / off (for now). You need to add an on / off switch wich is connected to a feed named "qstation" in your [Adafruit.io](https://io.adafruit.com/) interaface.
 
 ##Instructions
 
@@ -9,7 +9,7 @@ This is a litte Belleds Q Station demo program written in C. It connects your Be
 1. Install build depencies (See https://wiki.openwrt.org/doc/howto/buildroot.exigence for more information)
 
 	```bash
-	apt-get install git-core build-essential libssl-dev libncurses5-dev unzip subversion mercurial gawk
+	sudo apt-get install git-core subversion mercurial build-essential libssl-dev libncurses5-dev unzip gawk
 	```
 
 2. Clone OpenWRT from github (Do the following things as non root user!)
